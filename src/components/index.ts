@@ -11,3 +11,4 @@ export { EmptyState, type EmptyStateProps } from './EmptyState';
 export { ChartCard, type ChartCardProps } from './ChartCard';
 export { FilterBar, type FilterBarProps } from './FilterBar';
 export { useUndoSnackbar } from './useUndoSnackbar';
+export { PageErrorBoundary } from './PageErrorBoundary';

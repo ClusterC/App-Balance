@@ -33,6 +33,7 @@ import { BudgetsPage } from './features/budgets/BudgetsPage';
 import { ReportsPage } from './features/reports/ReportsPage';
 import { ForecastPage } from './features/forecast/ForecastPage';
 import { SettingsPage } from './features/settings/SettingsPage';
+import { PageErrorBoundary } from './components';
 
 export type PageId =
   | 'dashboard'
@@ -213,6 +214,8 @@ function FatalErrorScreen({ message, detail }: { message: string; detail: string
   );
 }
 
+// ── page error boundary ──────────────────────────────────────────────────────
+
 export function App(): ReactNode {
   const status = useAppStore((s) => s.status);
   const error = useAppStore((s) => s.error);
@@ -273,7 +276,11 @@ export function App(): ReactNode {
         }}
       >
         <ErrorBanner />
-        <Stack spacing={3}>{body}</Stack>
+        {/* Keyed by page: navigating away remounts the boundary, so the
+            fallback never persists once the user leaves the broken page. */}
+        <PageErrorBoundary key={page}>
+          <Stack spacing={3}>{body}</Stack>
+        </PageErrorBoundary>
       </Box>
     </Box>
   );
