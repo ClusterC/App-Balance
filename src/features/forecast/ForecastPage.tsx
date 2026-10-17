@@ -23,10 +23,10 @@ import {
   type ForecastResult,
 } from '../../domain/forecast';
 import {
-  todayKey,
-  addMonthsKey,
+  bangkokDayStart,
   bangkokDateKey,
   formatThaiDate,
+  todayKey,
 } from '../../domain/dates';
 import { formatAmount } from '../../domain/money';
 import { t } from '../../i18n/th';
@@ -43,8 +43,12 @@ export function ForecastPage(): ReactNode {
   const [history, setHistory] = useState<HistoryWindow>('6mo');
 
   const result = useMemo<ForecastResult | null>(() => {
+    // A full date key, not a month key — `addMonthsKey` expects `YYYY-MM` and
+    // would throw on `YYYY-MM-DD`.
     const today = todayKey();
-    const fromKey = addMonthsKey(today, -HISTORY_MONTHS[history]);
+    const fromDate = bangkokDayStart(today);
+    fromDate.setUTCMonth(fromDate.getUTCMonth() - HISTORY_MONTHS[history]);
+    const fromKey = bangkokDateKey(fromDate);
     const observations = expenseObservations({
       transactions: state.transactions,
       snapshots: allSnapshotsAsDomain(state).map((s) => ({
