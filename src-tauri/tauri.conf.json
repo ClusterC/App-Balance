@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Balance",
+  "version": "0.1.0",
+  "identifier": "com.personal.balanceapp",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Balance — บันทึกยอดเงินคงเหลือ",
+        "width": 1280,
+        "height": 832,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: asset: http://asset.localhost; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self'; connect-src 'self' ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["English"],
+        "displayLanguageSelector": false
+      }
+    },
+    "shortDescription": "บันทึกและติดตามยอดเงินคงเหลือในบัญชีของคุณ",
+    "longDescription": "แอปพลิเคชันเดสก์ท็อปสำหรับบันทึกยอดเงินคงเหลือในบัญชีธนาคาร เงินสด และกระเป๋าเงินอิเล็กทรอนิกส์ ด้วยการอัปเดตยอดจริงเป็นระยะ ข้อมูลทั้งหมดเก็บไว้ในเครื่องของคุณเท่านั้น ไม่มีการส่งข้อมูลออกไปภายนอก"
+  },
+  "plugins": {
+    "sql": {
+      "preload": ["sqlite:balance.db"]
+    }
+  }
+}

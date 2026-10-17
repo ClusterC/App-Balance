@@ -1,0 +1,20 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "สิทธิ์การใช้งานหลักของหน้าต่างหลัก — เปิดเฉพาะที่แอปต้องใช้จริง",
+  "windows": ["main"],
+  "permissions": [
+    "core:path:default",
+    "core:event:default",
+    "core:window:default",
+    "core:app:default",
+    "core:webview:default",
+    "core:resources:default",
+
+    "sql:default",
+    "sql:allow-execute",
+
+    "dialog:default",
+    "opener:default"
+  ]
+}

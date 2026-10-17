@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Tauri build artifacts
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# Local database and backups — never commit user financial data
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+backups/
+*.balance-backup.zip
+
+# Environment files / secrets
+.env
+.env.*
+!.env.example
+
+# Editor and OS noise
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Test / tooling caches
+coverage/
+.vitest/
+.eslintcache
+tauri-spike/
+Prompt_Claude_Code.txt
+*.tsbuildinfo
